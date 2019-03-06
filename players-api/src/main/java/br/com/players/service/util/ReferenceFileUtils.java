@@ -19,9 +19,10 @@ import br.com.players.service.vo.LigaJusticaVO;
 import br.com.players.service.vo.VingadoresRootVO;
 
 /**
+ * Classe utilitaria para obter os arquivos de referencia atraves de requisicoes
+ * HTTP.
  * 
- * 
- * @author Luis
+ * @author Luis Lucana (luislucana@gmail.com)
  *
  */
 public class ReferenceFileUtils {
@@ -32,57 +33,58 @@ public class ReferenceFileUtils {
 	public static VingadoresRootVO getAllowedVingadores() {
 		VingadoresRootVO vingadoresRootVO = null;
 		String fileContent = null;
-		
+
 		try {
 			fileContent = getUrlFileContent(VINGADORES_URL_FILE);
-			
+
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			vingadoresRootVO = gson.fromJson(fileContent, VingadoresRootVO.class);
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + VINGADORES_URL_FILE);
 		}
 
 		return vingadoresRootVO;
 	}
-	
+
 	public static LigaJusticaVO getAllowedLigaJustica() {
 		LigaJusticaVO ligaJusticaVO = null;
 		String fileContent = null;
-		
+
 		try {
 			fileContent = getUrlFileContent(LIGA_JUSTICA_URL_FILE);
 
 			Serializer serializer = new Persister();
 			ligaJusticaVO = serializer.read(LigaJusticaVO.class, fileContent);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + LIGA_JUSTICA_URL_FILE);
 		}
 
 		return ligaJusticaVO;
 	}
-	
+
 	private static String getUrlFileContent(final String fileUrl) throws IOException {
 		String content = null;
-		
+
 		HttpGet httpGet = new HttpGet(fileUrl);
 		HttpEntity httpEntity = null;
-		
-		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-			try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
-				
-				if (response.getStatusLine().getStatusCode() != HttpStatus.OK.value()) {
-					throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + fileUrl);
-				}
-				
-				httpEntity = response.getEntity();
-				content = EntityUtils.toString(httpEntity);
-			} 
+
+		try (CloseableHttpClient httpClient = HttpClients.createDefault();
+			CloseableHttpResponse response = httpClient.execute(httpGet)) {
+			
+			if (response.getStatusLine().getStatusCode() != HttpStatus.OK.value()) {
+				throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + fileUrl);
+			}
+
+			httpEntity = response.getEntity();
+			content = EntityUtils.toString(httpEntity);
 		} finally {
 			EntityUtils.consume(httpEntity);
 		}
-		
+
 		return content;
 	}
 }

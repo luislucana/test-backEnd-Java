@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 import br.com.players.persistence.model.Player;
 
 /**
- * Repository da entidade Player
+ * Repository da entidade Player.
  * 
- * @author Luis Lucana
+ * @author Luis Lucana (luislucana@gmail.com)
  *
  */
 @Repository

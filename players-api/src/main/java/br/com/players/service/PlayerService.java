@@ -7,9 +7,9 @@ import br.com.players.persistence.model.Player;
 import br.com.players.persistence.repository.PlayerRepository;
 
 /**
+ * Classe de servico para a entidade Player
  * 
- * 
- * @author Luis Lucana
+ * @author Luis Lucana (luislucana@gmail.com)
  *
  */
 @Service

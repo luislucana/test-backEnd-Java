@@ -5,14 +5,28 @@ import br.com.players.controller.util.PlayerGroupEnum;
 /**
  * VO que armazena os dados informados no cadastro do jogador.
  * 
- * @author Luis Lucana
+ * @author Luis Lucana (luislucana@gmail.com)
  *
  */
 public class PlayerVO {
 	
+	private Long id;
+	
 	private String nome;
 	
+	private String email;
+	
+	private String telefone;
+	
 	private PlayerGroupEnum playerGroup;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -20,6 +34,22 @@ public class PlayerVO {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public PlayerGroupEnum getPlayerGroup() {

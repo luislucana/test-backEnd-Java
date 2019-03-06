@@ -1,8 +1,9 @@
 package br.com.players.controller.util;
 
 /**
+ * Enum para definir os grupos permitidos para cadastro.
  * 
- * @author Luis
+ * @author Luis Lucana (luislucana@gmail.com)
  *
  */
 public enum PlayerGroupEnum {
