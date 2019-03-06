@@ -36,4 +36,21 @@ public enum PlayerGroupEnum {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+	
+	public static PlayerGroupEnum valueOf(int number) {
+		PlayerGroupEnum playerGroup = resolve(number);
+		if (playerGroup == null) {
+			throw new IllegalArgumentException("No matching constant for [" + String.valueOf(number) + "]");
+		}
+		return playerGroup;
+	}
+	
+	public static PlayerGroupEnum resolve(int number) {
+		for (PlayerGroupEnum playerGroup : values()) {
+			if (playerGroup.number == number) {
+				return playerGroup;
+			}
+		}
+		return null;
+	}
 }

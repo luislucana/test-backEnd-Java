@@ -19,6 +19,8 @@ public class PlayerVO {
 	private String telefone;
 	
 	private PlayerGroupEnum playerGroup;
+	
+	private String codinome;
 
 	public Long getId() {
 		return id;
@@ -58,5 +60,13 @@ public class PlayerVO {
 
 	public void setPlayerGroup(PlayerGroupEnum playerGroup) {
 		this.playerGroup = playerGroup;
+	}
+
+	public String getCodinome() {
+		return codinome;
+	}
+
+	public void setCodinome(String codinome) {
+		this.codinome = codinome;
 	}
 }
