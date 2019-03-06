@@ -41,8 +41,7 @@ public class ReferenceFileUtils {
 			vingadoresRootVO = gson.fromJson(fileContent, VingadoresRootVO.class);
 
 		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + VINGADORES_URL_FILE);
+			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + VINGADORES_URL_FILE, e);
 		}
 
 		return vingadoresRootVO;
@@ -59,8 +58,7 @@ public class ReferenceFileUtils {
 			ligaJusticaVO = serializer.read(LigaJusticaVO.class, fileContent);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + LIGA_JUSTICA_URL_FILE);
+			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + LIGA_JUSTICA_URL_FILE, e);
 		}
 
 		return ligaJusticaVO;
