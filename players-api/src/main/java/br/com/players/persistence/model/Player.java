@@ -2,38 +2,40 @@ package br.com.players.persistence.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "player")
 public class Player {
-     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-     
-    private String nome;
-     
-    private String email;
-    
-    private String telefone;
 
-    private String codinome;
-    
-    private Integer grupo;
-    
-    public Player() {
-    }
-    
-    Player(String nome, String email, String telefone, String codinome, Integer grupo) {
-    	this.nome = nome;
-    	this.email = email;
-    	this.telefone = telefone;
-    	this.codinome = codinome;
-    	this.grupo = grupo;
-    }
+	@Id
+	@SequenceGenerator(name = "seqGenerator", sequenceName = "PLAYER_SEQ", initialValue = 1, allocationSize = 3)
+	@GeneratedValue(generator = "seqGenerator")
+	private Long id;
+
+	private String nome;
+
+	private String email;
+
+	private String telefone;
+
+	private String codinome;
+
+	private Integer grupo;
+
+	public Player() {
+	}
+
+	Player(String nome, String email, String telefone, String codinome,
+			Integer grupo) {
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.codinome = codinome;
+		this.grupo = grupo;
+	}
 
 	public String getNome() {
 		return nome;
