@@ -50,6 +50,8 @@ Nota: É necessário que o HSQLDB esteja rodando para que a aplicação possa ro
 
 Assim que a aplicação iniciar, a mesma executará a criação da tabela _Player_, executando o script *_schema-hsqldb.sql_*.
 
+Assim que a aplicação iniciar, a mesma executará a criação da tabela _Player_, executando o script [schema-hsqldb.sql](/src/main/resources/scripts/schema-hsqldb.sql).
+
 Iniciada a aplicação, acessar no navegador a url: http://localhost:8080/.
   
 ### Tela inicial (Cadastrar jogador)
