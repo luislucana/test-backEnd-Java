@@ -1,5 +1,11 @@
 package br.com.players.service.vo;
 
+/**
+ * 
+ * 
+ * @author Luis Lucana (luislucana@gmail.com)
+ *
+ */
 public class VingadoresVO {
 
 	private String codinome;
