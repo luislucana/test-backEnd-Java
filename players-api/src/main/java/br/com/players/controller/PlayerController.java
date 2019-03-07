@@ -9,13 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.players.controller.util.PlayerGroupEnum;
@@ -70,7 +69,7 @@ public class PlayerController {
 		return "redirect:/preCadastrarJogador";
 	}
 	
-	@PostMapping("/listarJogadores")
+	@RequestMapping("/listarJogadores")
 	public String listarJogadores(Model model) {
 		
 		List<PlayerVO> listaJogadores = playerService.getAllPlayers();
@@ -80,19 +79,34 @@ public class PlayerController {
 		return "listarJogadores";
 	}
 	
-	@PutMapping("/{id}")
-    public void updatePlayer(@RequestBody PlayerVO playerVO, @PathVariable Long id) {
+	@PostMapping("/alterar/{id}")
+    public String updatePlayer(@RequestBody PlayerVO playerVO, @PathVariable Long id, RedirectAttributes redirectAttributes) {
         if (playerVO.getId() != id) {
           throw new RuntimeException();
         }
         
+        redirectAttributes.addFlashAttribute("playerVO", playerVO);
+        
         //bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
         //return bookRepository.save(book);
+        
+        return "redirect:/preCadastrarJogador";
     }
 	
-	@DeleteMapping("/{id}")
-    public void deletePlayer(@PathVariable Long id) {
-        //bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
-        //bookRepository.deleteById(id);
+	@PostMapping("/delete/{id}")
+    public String deletePlayer(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+		try {
+			playerService.deletePlayer(id);
+			
+			redirectAttributes.addFlashAttribute("messageType", "sucesso");
+			redirectAttributes.addFlashAttribute("message", "Sucesso!");
+			redirectAttributes.addFlashAttribute("detailMessage", "Jogador removido.");
+		} catch (Exception exception) {
+			redirectAttributes.addFlashAttribute("messageType", "erro");
+			redirectAttributes.addFlashAttribute("message", "Erro!");
+			redirectAttributes.addFlashAttribute("detailMessage", exception.getMessage());
+		}
+		
+		return "redirect:/listarJogadores";
     }
 }

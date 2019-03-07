@@ -14,6 +14,18 @@
 </head>
 <body>
 	<h1>Jogadores cadastrados</h1>
+	
+	<div th:if="${messageType}">
+		<div th:if="${message}">
+			<span th:if="${messageType eq 'sucesso'}" th:text="${message}" style="color: blue; font-weight: bold;" />
+			<span th:if="${messageType eq 'erro'}" th:text="${message}" style="color: red; font-weight: bold;" />
+		</div>
+		<div th:if="${detailMessage}">
+			<span th:if="${messageType eq 'sucesso'}" th:text="${detailMessage}" style="color: blue; font-weight: bold;" />
+			<span th:if="${messageType eq 'erro'}" th:text="${detailMessage}" style="color: red; font-weight: bold;" />
+		</div>
+		<br>
+	</div>
 
 	<form action="#" method="post">
 		<div th:if="${players == null || players.empty}">
@@ -39,8 +51,8 @@
 						<td th:text="${player.telefone}"></td>
 						<td th:text="${player.codinome}"></td>
 						<td th:text="${player.playerGroup.label}"></td>
-						<td><a th:href="@{/edit/{id}(id=${player.id})}">Edit</a></td>
-						<td><a th:href="@{/delete/{id}(id=${player.id})}">Delete</a></td>
+						<td><input type="submit" value="Editar" th:formaction="@{/edit/{id}(id=${player.id})}" formmethod="post"></input></td>
+						<td><input type="submit" value="Remover" th:formaction="@{/delete/{id}(id=${player.id})}" formmethod="post"></input></td>
 					</tr>
 				</tbody>
 			</table>
