@@ -51,7 +51,7 @@
 						<td th:text="${player.telefone}"></td>
 						<td th:text="${player.codinome}"></td>
 						<td th:text="${player.playerGroup.label}"></td>
-						<td><input type="submit" value="Editar" th:formaction="@{/edit/{id}(id=${player.id})}" formmethod="post"></input></td>
+						<td><input type="submit" value="Editar" th:formaction="@{/pre-alterar/{id}(id=${player.id})}" formmethod="post"></input></td>
 						<td><input type="submit" value="Remover" th:formaction="@{/delete/{id}(id=${player.id})}" formmethod="post"></input></td>
 					</tr>
 				</tbody>

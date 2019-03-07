@@ -24,8 +24,9 @@
 	</div>
 	
 	<form action="#" th:action="@{/cadastrarJogador}" th:object="${playerVO}" method="post">
-		 <table>
-            <tr>  
+		<input type="hidden" name="id" th:field="*{id}" />
+		<table>
+			<tr>  
                 <td><label for="nome">Nome:</label>  
                 <input type="text" name="nome" th:field="*{nome}" size="60" maxlength="200" /></td>
                 <td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome é obrigatório</td>
@@ -39,7 +40,7 @@
                 <td><label for="telefone">Telefone:</label>  
                 <input type="text" name="telefone" th:field="*{telefone}" /></td>
             </tr>
-        </table>
+		</table>
         <br>
     	
     	<div>Quero ser do grupo:</div>
@@ -56,8 +57,9 @@
 		
 		<table>
 			<tr>
-	            <td></td>  
-	            <td><input type="submit" value="Cadastrar"></input></td>
+	            <td></td>
+	            <td th:if="${playerVO.id == null or #strings.isEmpty(playerVO.id)}"><input type="submit" value="Cadastrar" th:formaction="@{/cadastrarJogador}"></input></td>
+	            <td th:if="${playerVO.id != null and not #strings.isEmpty(playerVO.id)}"><input type="submit" value="Alterar" th:formaction="@{/alterar/{id}(id=${playerVO.id})}"></input></td>
 	            <td><input type="submit" value="Visualizar relatório de jogadores" th:formaction="@{/listarJogadores}" formmethod="post"></input></td>
 	        </tr>
         </table>

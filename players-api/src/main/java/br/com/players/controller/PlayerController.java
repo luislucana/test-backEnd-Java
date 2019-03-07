@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -64,6 +63,8 @@ public class PlayerController {
 				redirectAttributes.addFlashAttribute("message", "Erro!");
 				redirectAttributes.addFlashAttribute("detailMessage", exception.getMessage());
 			}
+		} else {
+			return "cadastrarJogador";
 		}
 		
 		return "redirect:/preCadastrarJogador";
@@ -79,18 +80,39 @@ public class PlayerController {
 		return "listarJogadores";
 	}
 	
-	@PostMapping("/alterar/{id}")
-    public String updatePlayer(@RequestBody PlayerVO playerVO, @PathVariable Long id, RedirectAttributes redirectAttributes) {
-        if (playerVO.getId() != id) {
-          throw new RuntimeException();
-        }
-        
+	@PostMapping("/pre-alterar/{id}")
+    public String preUpdatePlayer(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+		
+		PlayerVO playerVO = playerService.getPlayer(id);
+		
         redirectAttributes.addFlashAttribute("playerVO", playerVO);
         
-        //bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
-        //return bookRepository.save(book);
-        
         return "redirect:/preCadastrarJogador";
+    }
+	
+	@PostMapping("/alterar/{id}")
+    public String updatePlayer(@Valid PlayerVO playerVO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @PathVariable Long id) {
+        
+		if (!bindingResult.hasErrors()) {
+			try {
+				playerService.updatePlayer(playerVO, id);
+	        
+				redirectAttributes.addFlashAttribute("playerVO", new PlayerVO());
+		        redirectAttributes.addFlashAttribute("messageType", "sucesso");
+				redirectAttributes.addFlashAttribute("message", "Sucesso!");
+				redirectAttributes.addFlashAttribute("detailMessage", "Dados do jogador alterados.");
+			} catch (Exception exception) {
+				redirectAttributes.addFlashAttribute("playerVO", playerVO);
+				redirectAttributes.addFlashAttribute("messageType", "erro");
+				redirectAttributes.addFlashAttribute("message", "Erro!");
+				redirectAttributes.addFlashAttribute("detailMessage", exception.getMessage());
+				return "redirect:/preCadastrarJogador";
+			}
+		} else {
+			return "cadastrarJogador";
+		}
+        
+		return "redirect:/preCadastrarJogador";
     }
 	
 	@PostMapping("/delete/{id}")
