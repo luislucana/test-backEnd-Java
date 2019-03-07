@@ -40,7 +40,7 @@ Em seguida:
 
 ## Rodando a aplicação
 
-Neste projeto, mais precisamente na pasta "packages", encontra-se um arquivo JAR pronto para ser executado (players-api.jar).
+Neste projeto, mais precisamente na pasta "jar", encontra-se um arquivo JAR pronto para ser executado [players-api.jar](/jar/players-api.jar).
 
 Para executa-lo, basta executar no prompt de comando:
 
