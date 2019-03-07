@@ -11,6 +11,18 @@
 <body>
 	<h1>Cadastro do jogador UOL</h1>
 	
+	<div th:if="${messageType}">
+		<div th:if="${message}">
+			<span th:if="${messageType eq 'sucesso'}" th:text="${message}" style="color: blue; font-weight: bold;" />
+			<span th:if="${messageType eq 'erro'}" th:text="${message}" style="color: red; font-weight: bold;" />
+		</div>
+		<div th:if="${detailMessage}">
+			<span th:if="${messageType eq 'sucesso'}" th:text="${detailMessage}" style="color: blue; font-weight: bold;" />
+			<span th:if="${messageType eq 'erro'}" th:text="${detailMessage}" style="color: red; font-weight: bold;" />
+		</div>
+		<br>
+	</div>
+	
 	<form action="#" th:action="@{/cadastrarJogador}" th:object="${playerVO}" method="post">
 		 <table>
             <tr>  
@@ -46,7 +58,7 @@
 			<tr>
 	            <td></td>  
 	            <td><input type="submit" value="Cadastrar"></input></td>
-	            <td><input type="submit" value="Listar jogadores" th:formaction="@{/listarJogadores}" formmethod="post"></input></td>
+	            <td><input type="submit" value="Visualizar relatório de jogadores" th:formaction="@{/listarJogadores}" formmethod="post"></input></td>
 	        </tr>
         </table>
 	</form>

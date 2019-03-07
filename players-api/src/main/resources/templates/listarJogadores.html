@@ -38,7 +38,7 @@
 						<td th:text="${player.email}"></td>
 						<td th:text="${player.telefone}"></td>
 						<td th:text="${player.codinome}"></td>
-						<td th:text="${player.playerGroup}"></td>
+						<td th:text="${player.playerGroup.label}"></td>
 						<td><a th:href="@{/edit/{id}(id=${player.id})}">Edit</a></td>
 						<td><a th:href="@{/delete/{id}(id=${player.id})}">Delete</a></td>
 					</tr>

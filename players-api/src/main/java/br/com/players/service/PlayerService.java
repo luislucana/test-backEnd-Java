@@ -47,7 +47,6 @@ public class PlayerService {
 			throw new RuntimeException("Não há mais codinomes disponíveis para o grupo selecionado.");
 		}
 		
-		
 		Player player = new Player();
 		player.setNome(playerVO.getNome());
 		player.setCodinome(codinomesDisponiveisList.get(0));
@@ -84,6 +83,7 @@ public class PlayerService {
 				playerVO.setEmail(player.getEmail());
 				playerVO.setTelefone(player.getTelefone());
 				playerVO.setPlayerGroup(PlayerGroupEnum.valueOf(player.getGrupo()));
+				playerVO.setCodinome(player.getCodinome());
 				
 				playerVOList.add(playerVO);
 			}

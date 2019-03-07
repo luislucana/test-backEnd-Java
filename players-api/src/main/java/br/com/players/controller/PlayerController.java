@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.players.controller.util.PlayerGroupEnum;
 import br.com.players.controller.vo.PlayerVO;
@@ -49,13 +50,24 @@ public class PlayerController {
 	}
 	
 	@PostMapping("/cadastrarJogador")
-	public String createPlayer(@Valid PlayerVO playerVO, BindingResult bindingResult) {
+	public String createPlayer(@Valid PlayerVO playerVO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		
 		if (!bindingResult.hasErrors()) {
-			playerService.createPlayer(playerVO);
-        }
+			try {
+				playerService.createPlayer(playerVO);
+				
+				redirectAttributes.addFlashAttribute("messageType", "sucesso");
+				redirectAttributes.addFlashAttribute("message", "Sucesso!");
+				redirectAttributes.addFlashAttribute("detailMessage", "Jogador cadastrado");
+			} catch (Exception exception) {
+				redirectAttributes.addFlashAttribute("playerVO", playerVO);
+				redirectAttributes.addFlashAttribute("messageType", "erro");
+				redirectAttributes.addFlashAttribute("message", "Erro!");
+				redirectAttributes.addFlashAttribute("detailMessage", exception.getMessage());
+			}
+		}
 		
-		return "cadastrarJogador";
+		return "redirect:/preCadastrarJogador";
 	}
 	
 	@PostMapping("/listarJogadores")
