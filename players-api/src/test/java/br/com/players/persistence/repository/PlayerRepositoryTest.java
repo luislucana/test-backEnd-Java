@@ -7,7 +7,7 @@ public class PlayerRepositoryTest {
 	
 	//@Test
     public void whenFindingCustomerById_thenCorrect() {
-        //playerRepository.save(new Player("John", "john@domain.com"));
+        //playerRepository.save(new Player());
         //assertThat(playerRepository.findById(1L)).isInstanceOf(Optional.class);
     }
 }

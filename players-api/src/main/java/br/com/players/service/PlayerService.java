@@ -17,7 +17,7 @@ import br.com.players.service.vo.VingadoresRootVO;
 import br.com.players.service.vo.VingadoresVO;
 
 /**
- * Classe de servico para a entidade Player
+ * Classe de servico para a entidade Player.
  * 
  * @author Luis Lucana (luislucana@gmail.com)
  *
@@ -28,6 +28,12 @@ public class PlayerService {
 	@Autowired
 	private PlayerRepository playerRepository;
 
+	/**
+	 * Cria um novo cadastro de jogador.
+	 * 
+	 * @param playerVO
+	 * @return PlayerVO
+	 */
 	@Transactional
 	public PlayerVO createPlayer(PlayerVO playerVO) {
 
@@ -114,6 +120,13 @@ public class PlayerService {
 		return playerVO;
 	}
 
+	/**
+	 * Altera o cadastro de um jogador.
+	 * 
+	 * @param playerVO
+	 * @param id
+	 * @return PlayerVO
+	 */
 	@Transactional
 	public PlayerVO updatePlayer(PlayerVO playerVO, Long id) {
 		if (playerVO.getId() != id) {
@@ -157,6 +170,10 @@ public class PlayerService {
 		return savedPlayerVO;
 	}
 
+	/**
+	 * Remove um cadastro de jogador, dado o ID.
+	 * @param id
+	 */
 	@Transactional
 	public void deletePlayer(Long id) {
 		Player player = playerRepository.findById(id)
@@ -178,13 +195,13 @@ public class PlayerService {
 
 		// obter os codinomes de acordo com o grupo selecionado
 		if (playerGroup == PlayerGroupEnum.LIGA_DA_JUSTICA) {
-			LigaJusticaVO codinomesLigaJustica = ReferenceFileUtils.getCodinomesLigaJustica();
+			LigaJusticaVO codinomesLigaJustica = ReferenceFileUtils.getCodinomesLigaJusticaFile();
 
 			if (codinomesLigaJustica != null) {
 				todosCodinomesList = codinomesLigaJustica.getCodinomes();
 			}
 		} else if (playerGroup == PlayerGroupEnum.VINGADORES) {
-			VingadoresRootVO codinomesVingadores = ReferenceFileUtils.getCodinomesVingadores();
+			VingadoresRootVO codinomesVingadores = ReferenceFileUtils.getCodinomesVingadoresFile();
 
 			if (codinomesVingadores != null) {
 				List<VingadoresVO> vingadoresVOList = codinomesVingadores.getVingadores();

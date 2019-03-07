@@ -30,7 +30,7 @@ public class ReferenceFileUtils {
 	public static final String VINGADORES_URL_FILE = "https://raw.githubusercontent.com/uolhost/test-backEnd-Java/master/referencias/vingadores.json";
 	public static final String LIGA_JUSTICA_URL_FILE = "https://raw.githubusercontent.com/uolhost/test-backEnd-Java/master/referencias/liga_da_justica.xml";
 
-	public static VingadoresRootVO getCodinomesVingadores() {
+	public static VingadoresRootVO getCodinomesVingadoresFile() {
 		VingadoresRootVO vingadoresRootVO = null;
 		String fileContent = null;
 
@@ -47,7 +47,7 @@ public class ReferenceFileUtils {
 		return vingadoresRootVO;
 	}
 
-	public static LigaJusticaVO getCodinomesLigaJustica() {
+	public static LigaJusticaVO getCodinomesLigaJusticaFile() {
 		LigaJusticaVO ligaJusticaVO = null;
 		String fileContent = null;
 
