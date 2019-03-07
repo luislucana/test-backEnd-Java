@@ -52,7 +52,11 @@ Assim que a aplicação iniciar, a mesma executará a criação da tabela _Playe
 
 Iniciada a aplicação, acessar no navegador a url: http://localhost:8080/.
 
+* Tela inicial (cadastrar jogador)
 ![Tela Inicial - Cadastrar jogador](/referencias/cadastrar_jogador.png)
+
+* Tela de listar jogadores
+![Tela Inicial - Listar jogadores](/referencias/jogadores_cadastrados.png)
 
 ## Interface do HSQLDB
 
