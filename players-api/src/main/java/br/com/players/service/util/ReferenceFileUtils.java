@@ -30,7 +30,7 @@ public class ReferenceFileUtils {
 	public static final String VINGADORES_URL_FILE = "https://raw.githubusercontent.com/uolhost/test-backEnd-Java/master/referencias/vingadores.json";
 	public static final String LIGA_JUSTICA_URL_FILE = "https://raw.githubusercontent.com/uolhost/test-backEnd-Java/master/referencias/liga_da_justica.xml";
 
-	public static VingadoresRootVO getAllowedVingadores() {
+	public static VingadoresRootVO getCodinomesVingadores() {
 		VingadoresRootVO vingadoresRootVO = null;
 		String fileContent = null;
 
@@ -40,14 +40,14 @@ public class ReferenceFileUtils {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			vingadoresRootVO = gson.fromJson(fileContent, VingadoresRootVO.class);
 
-		} catch (IOException e) {
-			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + VINGADORES_URL_FILE, e);
+		} catch (IOException ex) {
+			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + VINGADORES_URL_FILE, ex);
 		}
 
 		return vingadoresRootVO;
 	}
 
-	public static LigaJusticaVO getAllowedLigaJustica() {
+	public static LigaJusticaVO getCodinomesLigaJustica() {
 		LigaJusticaVO ligaJusticaVO = null;
 		String fileContent = null;
 
@@ -57,8 +57,8 @@ public class ReferenceFileUtils {
 			Serializer serializer = new Persister();
 			ligaJusticaVO = serializer.read(LigaJusticaVO.class, fileContent);
 
-		} catch (Exception e) {
-			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + LIGA_JUSTICA_URL_FILE, e);
+		} catch (Exception ex) {
+			throw new RuntimeException("Não foi possível obter o conteúdo do arquivo de referência: " + LIGA_JUSTICA_URL_FILE, ex);
 		}
 
 		return ligaJusticaVO;

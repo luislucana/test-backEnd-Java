@@ -67,6 +67,11 @@ public class PlayerService {
 		return savedPlayerVO;
 	}
 	
+	/**
+	 * Obtem a lista de todos os jogadores cadastrados.
+	 * 
+	 * @return Lista de todos os jogadores cadastrados.
+	 */
 	public List<PlayerVO> getAllPlayers() {
 		Iterable<Player> allPlayers = playerRepository.findAll();
 		List<PlayerVO> playerVOList = new ArrayList<PlayerVO>();
@@ -89,8 +94,6 @@ public class PlayerService {
 	
 	@Transactional
 	public void updatePlayer(PlayerVO playerVO, Long id) {
-		
-		
 		playerRepository.save(new Player());
 	}
 	
@@ -102,22 +105,29 @@ public class PlayerService {
 	    playerRepository.delete(player);
 	}
 	
+	/**
+	 * Obtem os codinomes disponiveis de acordo com o grupo informado.
+	 * 
+	 * @param playerGroup Grupo informado
+	 * @return Lista de codinomes disponiveis para o grupo informado.
+	 */
 	private List<String> obterCodinomesDisponiveis(PlayerGroupEnum playerGroup) {
 		
 		List<String> todosCodinomesList = new ArrayList<String>();
 		List<String> codinomesDisponiveisList = new ArrayList<String>();
 
+		// obter os codinomes de acordo com o grupo selecionado
 		if (playerGroup == PlayerGroupEnum.LIGA_DA_JUSTICA) {
-			LigaJusticaVO allowedLigaJustica = ReferenceFileUtils.getAllowedLigaJustica();
+			LigaJusticaVO codinomesLigaJustica = ReferenceFileUtils.getCodinomesLigaJustica();
 			
-			if (allowedLigaJustica != null) {
-				todosCodinomesList = allowedLigaJustica.getCodinomes();
+			if (codinomesLigaJustica != null) {
+				todosCodinomesList = codinomesLigaJustica.getCodinomes();
 			}
 		} else if (playerGroup == PlayerGroupEnum.VINGADORES) {
-			VingadoresRootVO allowedVingadores = ReferenceFileUtils.getAllowedVingadores();
+			VingadoresRootVO codinomesVingadores = ReferenceFileUtils.getCodinomesVingadores();
 			
-			if (allowedVingadores != null) {
-				List<VingadoresVO> vingadoresVOList = allowedVingadores.getVingadores();
+			if (codinomesVingadores != null) {
+				List<VingadoresVO> vingadoresVOList = codinomesVingadores.getVingadores();
 				
 				if (vingadoresVOList != null && !vingadoresVOList.isEmpty()) {
 					for (VingadoresVO vingadoresVO : vingadoresVOList) {
@@ -127,8 +137,10 @@ public class PlayerService {
 			}
 		}
 		
+		// buscar codinomes que ja estao sendo usados
 		List<String> codinomesUsadosList = playerRepository.findCodinomesByGrupo(playerGroup.getNumber());
 		
+		// merge das listas para retornar somente os codinomes disponiveis
 		if (codinomesUsadosList != null && !codinomesUsadosList.isEmpty()) {
 			todosCodinomesList.removeAll(codinomesUsadosList);
 		}
