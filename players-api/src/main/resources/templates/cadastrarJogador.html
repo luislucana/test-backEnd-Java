@@ -6,7 +6,7 @@
 	   
 	</script>
 	
-	<title>Home Page</title>
+	<title>Cadastro do jogador UOL</title>
 </head>
 <body>
 	<h1>Cadastro do jogador UOL</h1>
@@ -15,20 +15,23 @@
 		 <table>
             <tr>  
                 <td><label for="nome">Nome:</label>  
-                <input type="text" name="nome" th:field="*{nome}" /></td>  
+                <input type="text" name="nome" th:field="*{nome}" size="60" maxlength="200" /></td>
+                <td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome é obrigatório</td>
             </tr>  
             <tr>  
                 <td><label for="email">Email:</label>  
-                <input type="text" name="email" th:field="*{email}"/></td>  
+                <input type="text" name="email" th:field="*{email}" maxlength="60"/></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email é obrigatório</td>  
             </tr>
             <tr>  
                 <td><label for="telefone">Telefone:</label>  
-                <input type="text" name="telefone" th:field="*{telefone}" /></td>  
+                <input type="text" name="telefone" th:field="*{telefone}" /></td>
             </tr>
         </table>
         <br>
     	
     	<div>Quero ser do grupo:</div>
+    	<div th:if="${#fields.hasErrors('playerGroup')}" th:errors="*{playerGroup}">Selecione um grupo!</div> 
         <table>
 			<tr th:each="group : ${listarGrupos}">
 				<td>

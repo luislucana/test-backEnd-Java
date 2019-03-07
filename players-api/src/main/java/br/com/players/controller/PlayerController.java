@@ -3,9 +3,12 @@ package br.com.players.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,13 +49,11 @@ public class PlayerController {
 	}
 	
 	@PostMapping("/cadastrarJogador")
-	public String createPlayer(@ModelAttribute("playerVO") PlayerVO playerVO) {
-		System.out.println(playerVO.getEmail());
-		System.out.println(playerVO.getNome());
-		System.out.println(playerVO.getTelefone());
-		System.out.println(playerVO.getPlayerGroup()!= null ? playerVO.getPlayerGroup().name() : "null");
+	public String createPlayer(@Valid PlayerVO playerVO, BindingResult bindingResult) {
 		
-		playerService.createPlayer(playerVO);
+		if (!bindingResult.hasErrors()) {
+			playerService.createPlayer(playerVO);
+        }
 		
 		return "cadastrarJogador";
 	}

@@ -1,5 +1,8 @@
 package br.com.players.controller.vo;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import br.com.players.controller.util.PlayerGroupEnum;
 
 /**
@@ -9,17 +12,22 @@ import br.com.players.controller.util.PlayerGroupEnum;
  *
  */
 public class PlayerVO {
-	
+
 	private Long id;
-	
+
+	@NotNull(message = "Nome é obrigatório")
+	@NotEmpty(message = "Nome é obrigatório")
 	private String nome;
-	
+
+	@NotNull(message = "Email é obrigatório")
+	@NotEmpty(message = "Email é obrigatório")
 	private String email;
-	
+
 	private String telefone;
-	
+
+	@NotNull(message = "Selecione um grupo")
 	private PlayerGroupEnum playerGroup;
-	
+
 	private String codinome;
 
 	public Long getId() {

@@ -1,7 +1,16 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8">
-<title>Jogadores cadastrados</title>
+	<meta charset="UTF-8">
+	<title>Jogadores cadastrados</title>
+	
+	<style>
+		table {
+		  border-collapse: collapse;
+		}
+		table, th, td {
+		  border: 1px solid black;
+		}
+	</style>
 </head>
 <body>
 	<h1>Jogadores cadastrados</h1>
@@ -25,11 +34,11 @@
 				</thead>
 				<tbody>
 					<tr th:each="player : ${players}">
-						<td th:text="${player.name}"></td>
+						<td th:text="${player.nome}"></td>
 						<td th:text="${player.email}"></td>
 						<td th:text="${player.telefone}"></td>
 						<td th:text="${player.codinome}"></td>
-						<td th:text="${player.grupo}"></td>
+						<td th:text="${player.playerGroup}"></td>
 						<td><a th:href="@{/edit/{id}(id=${player.id})}">Edit</a></td>
 						<td><a th:href="@{/delete/{id}(id=${player.id})}">Delete</a></td>
 					</tr>
@@ -38,12 +47,9 @@
 		</div>
 		
 		<br>
-		<table>
-			<tr>
-	            <td></td>  
-				<td><input type="submit" value="Novo jogador" th:formaction="@{/preCadastrarJogador}" formmethod="get"></input></td>
-			</tr>
-		</table>
+		<div>
+			<input type="submit" value="Novo jogador" th:formaction="@{/preCadastrarJogador}" formmethod="get"></input>
+		</div>
 	</form>
 </body>
 </html>
