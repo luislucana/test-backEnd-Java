@@ -30,11 +30,11 @@ Em seguida:
 
 * Rodar o banco de dados no modo Server, navegando até o diretório no prompt de comando:
 
-   [DIRETORIO_HSQLDB]\hsqldb-2.4.1\hsqldb\data
+   > [DIRETORIO_HSQLDB]\hsqldb-2.4.1\hsqldb\data
 
   e executando a linha abaixo:
 
-   java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:players_db --dbname.0 players_db
+   > java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:players_db --dbname.0 players_db
 
 * Como pode-se ver, chamamos o banco de players_db. Este comando criará o banco de dados com o nome informado.
 
@@ -44,7 +44,7 @@ Neste projeto, mais precisamente na pasta "jar", encontra-se um arquivo JAR pron
 
 Para executa-lo, basta executar no prompt de comando:
 
-  java -jar players-api.jar
+  > java -jar players-api.jar
 
 Nota: É necessário que o HSQLDB esteja rodando para que a aplicação possa rodar.
 
@@ -60,11 +60,11 @@ Através de uma interface do HSQLDB, podemos visualizar o que está sendo gravad
 
 Para isso, no prompt de comando, navegar até o diretório:
 
-   [DIRETORIO_HSQLDB]\hsqldb-2.4.1\hsqldb\lib
+   > [DIRETORIO_HSQLDB]\hsqldb-2.4.1\hsqldb\lib
 
 e executar:
 
-   java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing
+   > java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing
 
 Uma janela deverá ser aberta, como mostra a figura a seguir:
 
