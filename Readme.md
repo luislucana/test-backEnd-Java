@@ -28,7 +28,7 @@ Em seguida:
 
 * Descompactar o ZIP. O diretório em que for descompactado será referido como [DIRETORIO_HSQLDB].
 
-* Rodar o banco de dados no modo Server, nagevando até o diretório no prompt de comando do windows:
+* Rodar o banco de dados no modo Server, navegando até o diretório no prompt de comando:
 
    [DIRETORIO_HSQLDB]\hsqldb-2.4.1\hsqldb\data
 
@@ -40,7 +40,7 @@ Em seguida:
 
 ## Rodando a aplicação
 
-Neste projeto, mais precisamente na pasta "packages", encontra-se um arquivo JAR pronto para ser executado (players-api.jar).
+Neste projeto, mais precisamente na pasta "jar", encontra-se um arquivo JAR pronto para ser executado [players-api.jar](/jar/players-api.jar).
 
 Para executa-lo, basta executar no prompt de comando:
 
