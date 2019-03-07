@@ -40,7 +40,7 @@ public class PlayerController {
 	    return Arrays.asList(PlayerGroupEnum.values());
 	}
 	
-	@GetMapping("/")
+	@GetMapping({"/", "/preCadastrarJogador"})
 	public String preCreatePlayer(PlayerVO playerVO) {
 		return "cadastrarJogador";
 	}
@@ -57,7 +57,7 @@ public class PlayerController {
 		return "cadastrarJogador";
 	}
 	
-	@GetMapping("/listarJogadores")
+	@PostMapping("/listarJogadores")
 	public String listarJogadores(Model model) {
 		
 		List<PlayerVO> listaJogadores = playerService.getAllPlayers();

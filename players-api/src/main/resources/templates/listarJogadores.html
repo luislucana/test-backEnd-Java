@@ -7,39 +7,43 @@
 	<h1>Jogadores cadastrados</h1>
 
 	<form action="#" method="post">
-		<div th:switch="${players}">
-			<h2 th:case="null">Não há usuários cadastrados.</h2>
-			<div th:case="*">
-				<h2>Jogadores cadastrados:</h2>
-				<table>
-					<thead>
-						<tr>
-							<th>Nome</th>
-							<th>Email</th>
-							<th>Telefone</th>
-							<th>Codinome</th>
-							<th>Grupo</th>
-							<th>Editar</th>
-							<th>Remover</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="player : ${players}">
-							<td th:text="${player.name}"></td>
-							<td th:text="${player.email}"></td>
-							<td th:text="${player.telefone}"></td>
-							<td th:text="${player.codinome}"></td>
-							<td th:text="${player.grupo}"></td>
-							<td><a th:href="@{/edit/{id}(id=${player.id})}">Edit</a></td>
-							<td><a th:href="@{/delete/{id}(id=${player.id})}">Delete</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<p>
-				<a href="/signup">Add a new user</a>
-			</p>
+		<div th:if="${players == null || players.empty}">
+			<h2>Não há usuários cadastrados.</h2>
 		</div>
+		<div th:unless="${players == null || players.empty}">
+			<table>
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Telefone</th>
+						<th>Codinome</th>
+						<th>Grupo</th>
+						<th>Editar</th>
+						<th>Remover</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="player : ${players}">
+						<td th:text="${player.name}"></td>
+						<td th:text="${player.email}"></td>
+						<td th:text="${player.telefone}"></td>
+						<td th:text="${player.codinome}"></td>
+						<td th:text="${player.grupo}"></td>
+						<td><a th:href="@{/edit/{id}(id=${player.id})}">Edit</a></td>
+						<td><a th:href="@{/delete/{id}(id=${player.id})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<br>
+		<table>
+			<tr>
+	            <td></td>  
+				<td><input type="submit" value="Novo jogador" th:formaction="@{/preCadastrarJogador}" formmethod="get"></input></td>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>
