@@ -26,7 +26,7 @@ Para instalar o HSQLDB, baixar o mesmo no site http://hsqldb.org/. Neste projeto
 
 Em seguida:
 
-* Descompactar o ZIP. O diretório em que for descompactado será referido como [DIRETORIO_HSQLDB].
+* Descompactar o ZIP. O diretório em que for descompactado será referido como *_[DIRETORIO_HSQLDB]_*.
 
 * Rodar o banco de dados no modo Server, navegando até o diretório no prompt de comando:
 
@@ -68,3 +68,8 @@ e executar:
 
 Uma janela deverá ser aberta, como mostra a figura a seguir:
 
+![HSQLDB Database Manager](/referencias/hsqldb_db_manager_2.png)
+
+Preencher os campos de acordo com a imagem e clicar em OK. o Database Manager estará conectado com o banco **players_db**.
+
+![HSQLDB Database Manager - Tabela](/referencias/hsqldb_db_manager.png)
